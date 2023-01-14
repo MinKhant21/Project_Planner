@@ -1,7 +1,7 @@
 <template>
   <h1>Home</h1>
   <div v-for="project in projects" :key="project.id">
-    <SigleProject :project="project"></SigleProject>
+    <SigleProject :project="project" @delete="deleteformchild"></SigleProject>
   </div>
 </template>
 
@@ -26,6 +26,14 @@ export default {
       .catch(()=>{
 
       })
+    },
+    methods:{
+      deleteformchild(id)
+      {
+        this.projects = this.projects.filter((project)=>{
+          return project.id!=id
+        })
+      }
     }
 }
 </script>

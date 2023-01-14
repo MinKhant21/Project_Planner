@@ -1,12 +1,13 @@
 <template>
-   <div class="project" >
+   <div class="project" :class="{complete:project.complete,falsecomplete:project.complete == false}">
         <div class="flexing">
             <div>
                 <h3 @click="ShowDetail=!ShowDetail">{{ project.title }}</h3>
+                <!-- <p> {{ project.complete }}</p> -->
                 <p v-if="ShowDetail"> {{ project.detail }}</p>
             </div>
             <div>
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined" @click="deleteProject">
                 delete
                 </span>
                 <span class="material-symbols-outlined">
@@ -17,7 +18,7 @@
                 </span>
             </div>
         </div>
-        
+       
         
    </div>
 </template>
@@ -27,7 +28,21 @@ export default {
     props:['project'],
     data(){
         return{
-            ShowDetail:false
+            ShowDetail:false,
+            complete:null,
+        }
+    },
+    methods:{
+        deleteProject()
+        {
+            let api = 'http://localhost:3000/projects/';
+            fetch(api+'/'+this.project.id,{method:'DELETE'})
+            .then((id)=>{
+                return this.$emit('delete',this.project.id)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
         }
     }
 }
@@ -55,5 +70,13 @@ export default {
     }
     span:hover{
         background-color: rgb(188, 148, 156);
+    }
+    .complete{
+        border-left-color: green;
+        background-color: blue;
+    }
+    .falsecomplete{
+        border-left-color: green;
+        background-color: green;
     }
 </style>
