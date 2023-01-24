@@ -13,7 +13,7 @@
                 <span class="material-symbols-outlined">
                 edit
                 </span>
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined" @click="doneProject">
                 done
                 </span>
             </div>
@@ -42,6 +42,25 @@ export default {
             })
             .catch((error)=>{
                 console.log(error)
+            })
+        },
+        doneProject()
+        {
+            let api = 'http://localhost:3000/projects'
+            fetch(api+'/'+this.project.id,{
+                method:'PATCH',
+                headers:{
+                    "Content-type" : 'application/json'
+                },
+                body:JSON.stringify({
+                    complete :this.complete=!this.project.complete
+                }),
+            })
+            .then(()=>{
+                this.$emit("complete",this.project.id)
+            })
+            .catch((err)=>{
+                console.log(err)
             })
         }
     }
@@ -72,11 +91,9 @@ export default {
         background-color: rgb(188, 148, 156);
     }
     .complete{
-        border-left-color: green;
-        background-color: blue;
+        border-left:6px solid greenyellow;
     }
     .falsecomplete{
-        border-left-color: green;
-        background-color: green;
+        border-left:6px solid red;
     }
 </style>

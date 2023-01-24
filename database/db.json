@@ -4,21 +4,19 @@
       "id": 1,
       "title": "Project Title 3",
       "detail": "Project Detail 3",
-      "complete" : true
+      "complete": false
     },
     {
-        "id": 2,
-        "title": "Project Title 3",
-        "detail": "Project Detail 3",
-        "complete" : true
-
-      },
-      {
-        "id": 3,
-        "title": "Project Title 3",
-        "detail": "Project Detail 3",
-        "complete" : false
-
-      }
+      "id": 2,
+      "title": "Project Title 3",
+      "detail": "Project Detail 3",
+      "complete": true
+    },
+    {
+      "id": 3,
+      "title": "Project Title 3",
+      "detail": "Project Detail 3",
+      "complete": false
+    }
   ]
 }

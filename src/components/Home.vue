@@ -1,7 +1,7 @@
 <template>
   <h1>Home</h1>
   <div v-for="project in projects" :key="project.id">
-    <SigleProject :project="project" @delete="deleteformchild"></SigleProject>
+    <SigleProject :project="project" @delete="deleteformchild" @complete="completeProject"></SigleProject>
   </div>
 </template>
 
@@ -33,7 +33,14 @@ export default {
         this.projects = this.projects.filter((project)=>{
           return project.id!=id
         })
+      },
+      completeProject(id)
+      {
+        let findProject = this.projects.find((id)=>{
+          return findProject.complete =! findProject.complete
+        })
       }
+
     }
 }
 </script>
